@@ -24,6 +24,8 @@ import utilities.LoadBalancer;
 
 /**
  * @author shikshagupta
+ * 
+ * A utilities class to help {@link client.Client}
  *
  */
 public class ClientUtilities {

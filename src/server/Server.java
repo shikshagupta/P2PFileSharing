@@ -21,6 +21,12 @@ import utilities.LoadBalancer;
 
 /**
  * @author shikshagupta
+ * 
+ * A Server class to start the server side. The server side 
+ * is the only one which has the file initially. It splits the 
+ * file into chunks and distributes them evenly among the peers.
+ * All the peers will first contact the server and then connect 
+ * among themselves.
  *
  */
 public class Server {

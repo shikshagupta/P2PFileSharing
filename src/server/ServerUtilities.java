@@ -10,19 +10,23 @@ import utilities.ConfigReader;
 
 /**
  * @author shikshagupta
+ * 
+ * A utilities class to help {@link server.Server}
  *
  */
 public class ServerUtilities {
 		
 	FileInfo setFileInfo() throws Exception{
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Enter the file name");
+		System.out.println("Enter the file name:");
+		Scanner in = new Scanner(System.in);
 		String fname="";
-		//while(sc.hasNext()) {
-			//fname = sc.nextLine();
-			fname = "SG.pdf";
-		//}
-		sc.close();
+		try { 
+			fname = in.nextLine(); 
+		} catch (Exception e) {
+			fname = ConfigReader.getInstance().getFileName(); e.printStackTrace();
+		}
+		fname = ConfigReader.getInstance().getFileName();
+		in.close();
 		FileInfo fi = new FileInfo(fname, ConfigReader.getInstance().getServerFilePath());
 		return fi;
 	}

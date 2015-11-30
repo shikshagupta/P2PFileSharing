@@ -8,6 +8,8 @@ import utilities.ConfigReader;
 
 /**
  * @author shikshagupta
+ * 
+ * See {@link client.peer1.Peer1}
  *
  */
 public class Peer2 extends Client{

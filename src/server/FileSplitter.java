@@ -15,6 +15,10 @@ import utilities.FileUtils;
 
 /**
  * @author shikshagupta
+ * 
+ * The FileSplitter splits the file that needs to be distributed 
+ * among the peers into chunks of small sizes so that load can be 
+ * balanced and chunks can be distributed evenly among the peers.
  *
  */
 public class FileSplitter {

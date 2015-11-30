@@ -1,6 +1,3 @@
-/**
- * 
- */
 package client;
 
 import java.io.BufferedInputStream;
@@ -17,7 +14,13 @@ import utilities.FileUtils;
 
 /**
  * @author shikshagupta
- *
+ * 
+ * This class is the client side of the application. 
+ * It is called by Peers, for example ({@link client.peer1.Peer1}), 
+ * when peers start up. The class handles downloading of chunks from 
+ * the server, and then spawns separate threads for uploading and 
+ * downloading from peers.
+ * 
  */
 public class Client {
 

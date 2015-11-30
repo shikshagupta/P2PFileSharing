@@ -7,6 +7,11 @@ import utilities.ConfigReader;
 
 /**
  * @author shikshagupta
+ * 
+ * SplitfileInfo {@code extends} {@link FileInfo} class. It 
+ * adds following information to the file info class related  
+ * to the split file chunks - chunk id, parsed file name of the 
+ * split file to identify each unique chunk of the original file.
  *
  */
 public class SplitFileInfo extends FileInfo{

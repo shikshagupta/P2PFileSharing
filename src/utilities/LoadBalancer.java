@@ -10,6 +10,9 @@ import fileinfo.FileInfo;
 
 /**
  * @author shikshagupta
+ * 
+ * The class contains methods to distribute chunks evenly 
+ * among peers. Controls and balances this traffic.
  *
  */
 public class LoadBalancer {

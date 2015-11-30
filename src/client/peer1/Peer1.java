@@ -8,6 +8,10 @@ import utilities.ConfigReader;
 
 /**
  * @author shikshagupta
+ * 
+ * The Peer1 is among the five other peers that {@code extend} from
+ * the {@code client.Client} class. Each peer calls the Client's run method
+ * on start up.
  *
  */
 public class Peer1 extends Client {

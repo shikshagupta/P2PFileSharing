@@ -11,6 +11,9 @@ import java.net.Socket;
 
 /**
  * @author shikshagupta
+ * 
+ * A utilities class to close file, stream and 
+ * socket connections
  *
  */
 public class FileUtils {

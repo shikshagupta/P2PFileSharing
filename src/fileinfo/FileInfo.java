@@ -7,6 +7,10 @@ import java.io.File;
 
 /**
  * @author shikshagupta
+ * 
+ * The class is like a bean class that contains the following 
+ * information about the file : filename, filepath, file, 
+ * size of chunks in kilo bytes, number of chunks.
  *
  */
 public class FileInfo {

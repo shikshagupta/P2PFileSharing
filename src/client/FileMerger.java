@@ -15,6 +15,9 @@ import utilities.FileUtils;
 
 /**
  * @author shikshagupta
+ * 
+ * Merges the file chunks when all chunks have been received to
+ * form a copy of the original file.
  *
  */
 public class FileMerger {

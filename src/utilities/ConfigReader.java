@@ -4,7 +4,6 @@
 package utilities;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,12 +11,16 @@ import java.util.Properties;
 
 /**
  * @author shikshagupta
+ * 
+ * Reads the configurations from a properties file and returns the 
+ * values configured. It does so by using a singleton object.
  *
  */
 public class ConfigReader {
 	
 	private InputStream inputStream;
 	private Map<String,String> propertyValueMap;
+	private static final String FILE_NAME="filename";
 	private static final String SERVER_PORT="serverport";
 	private static final String PEER1_LISTENER_PORT="peer1listenerport";
 	private static final String PEER2_LISTENER_PORT="peer2listenerport";
@@ -50,6 +53,11 @@ public class ConfigReader {
 	private static final String DEFAULT_CLIENT_FILE_PATH="";	
 	private static final int DEFAULT_SIZE_OF_CHUNKS_IN_KB=100;
 	private static final int DEFAULT_NO_OF_PEERS=5;
+	private static final String PEER1_NEIGHBOURS="peer1neighbours";
+	private static final String PEER2_NEIGHBOURS="peer2neighbours";
+	private static final String PEER3_NEIGHBOURS="peer3neighbours";
+	private static final String PEER4_NEIGHBOURS="peer4neighbours";
+	private static final String PEER5_NEIGHBOURS="peer5neighbours";
 	private static ConfigReader singletonConfigReader=null;
 	
 	private ConfigReader() {
@@ -73,6 +81,7 @@ public class ConfigReader {
 			else
 				throw new FileNotFoundException(
 						"property file '" + propFileName + "' not found in the classpath"); 
+			propertyValueMap.put(FILE_NAME,prop.getProperty(FILE_NAME));
 			propertyValueMap.put(SERVER_PORT,prop.getProperty(SERVER_PORT));
 			propertyValueMap.put(SERVER_NAME, prop.getProperty(SERVER_NAME));
 			propertyValueMap.put(SERVER_FILE_PATH, prop.getProperty(SERVER_FILE_PATH));
@@ -89,15 +98,15 @@ public class ConfigReader {
 			propertyValueMap.put(PEER3_SERVER_NAME, prop.getProperty(PEER3_SERVER_NAME));
 			propertyValueMap.put(PEER4_SERVER_NAME, prop.getProperty(PEER4_SERVER_NAME));
 			propertyValueMap.put(PEER5_SERVER_NAME, prop.getProperty(PEER5_SERVER_NAME));
+			propertyValueMap.put(PEER1_NEIGHBOURS, prop.getProperty(PEER1_NEIGHBOURS));
+			propertyValueMap.put(PEER2_NEIGHBOURS, prop.getProperty(PEER2_NEIGHBOURS));
+			propertyValueMap.put(PEER3_NEIGHBOURS, prop.getProperty(PEER3_NEIGHBOURS));
+			propertyValueMap.put(PEER4_NEIGHBOURS, prop.getProperty(PEER4_NEIGHBOURS));
+			propertyValueMap.put(PEER5_NEIGHBOURS, prop.getProperty(PEER5_NEIGHBOURS));
 		} catch (Exception e) {
-			System.out.println("Exception: " + e);
+			System.err.println("Exception while loading propert value map: " + e);
 		} finally {
-			try {
-				inputStream.close();
-			} catch (IOException e) {
-				System.out.println("Error closing inputstream.");
-			}
-			
+			FileUtils.close(inputStream);			
 		}
 	}
 	
@@ -219,4 +228,104 @@ public class ConfigReader {
 			return DEFAULT_PEER5_SERVER_NAME;
 		}		
 	}
+
+	public String getFileName() {
+		try {
+			return propertyValueMap.get(FILE_NAME);
+		} catch (Exception e) {
+			return "";
+		}		
+	}
+
+	public int getPeer1DownloadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER1_NEIGHBOURS)
+					.split(":")[0]);
+		}
+		catch (Exception e) {
+			return 5;
+		}
+	}
+	public int getPeer1UploadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER1_NEIGHBOURS)
+					.split(":")[1]);
+		}
+		catch (Exception e) {
+			return 2;
+		}
+	}
+	public int getPeer2DownloadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER2_NEIGHBOURS)
+					.split(":")[0]);
+		}
+		catch (Exception e) {
+			return 1;
+		}
+	}
+	public int getPeer2UploadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER2_NEIGHBOURS)
+					.split(":")[1]);
+		}
+		catch (Exception e) {
+			return 3;
+		}
+	}
+	public int getPeer3DownloadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER3_NEIGHBOURS)
+					.split(":")[0]);
+		}
+		catch (Exception e) {
+			return 2;
+		}
+	}
+	public int getPeer3UploadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER3_NEIGHBOURS)
+					.split(":")[1]);
+		}
+		catch (Exception e) {
+			return 4;
+		}
+	}
+	public int getPeer4DownloadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER4_NEIGHBOURS)
+					.split(":")[0]);
+		}
+		catch (Exception e) {
+			return 3;
+		}
+	}
+	public int getPeer4UploadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER4_NEIGHBOURS)
+					.split(":")[1]);
+		}
+		catch (Exception e) {
+			return 5;
+		}
+	}
+	public int getPeer5DownloadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER5_NEIGHBOURS)
+					.split(":")[0]);
+		}
+		catch (Exception e) {
+			return 4;
+		}
+	}
+	public int getPeer5UploadNeighbour() {
+		try {
+			return Integer.parseInt(propertyValueMap.get(PEER5_NEIGHBOURS)
+					.split(":")[1]);
+		}
+		catch (Exception e) {
+			return 1;
+		}
+	}
+
 }
